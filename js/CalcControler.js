@@ -1,6 +1,7 @@
 class CalcController{
 
     constructor() {
+
         this._operation = [];
         this._locale = 'pt-BR';
         this._displayCalcEl = document.querySelector("#display");
@@ -39,7 +40,7 @@ class CalcController{
 
     }
 
-    getLastOperation(value){ 
+    getLastOperation(){ 
 
         return this._operation[this._operation.length - 1];
 
@@ -98,27 +99,31 @@ class CalcController{
         switch (value) {
             
             case 'ac':
-                this.clearAll;
+                this.clearAll();
                 break;
 
             case 'ce':
-                this.clearEntry;
+                this.clearEntry();
                 break;
 
             case 'soma':
-                this.addOperation('+')
+                this.addOperation('+');
                 break;
 
             case 'subtracao':
-                this.addOperation('-')
+                this.addOperation('-');
                 break;
 
             case 'divisao':
-                this.addOperation('/')
+                this.addOperation('/');
+                break;
+
+            case 'multiplicacao':
+                this.addOperation('*');
                 break;
 
             case 'porcento':
-                this.addOperation('%')
+                this.addOperation('%');
                 break;
 
             case 'igual':
@@ -126,7 +131,7 @@ class CalcController{
                 break;
 
             case 'ponto':
-                this.addOperation('.')
+                this.addOperation('.');
                 break;
 
             case '0':                
