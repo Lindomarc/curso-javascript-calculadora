@@ -58,33 +58,65 @@ class CalcController{
 
     }
 
+    pushOperation(value){
+
+        this._operation.push(value);
+
+        if(this._operation.length > 3){
+
+            this.calc();
+
+        }
+    }
+
+    calc(){
+
+        let last = this._operation.pop();
+        let result = eval(this._operation.join(""));
+
+        this._operation = [result, last];
+
+    }
+
+    setLastNumerToDisplay(){
+
+
+
+    }
     addOperation(value){
 
-
         if (isNaN(this.getLastOperation())) {
-
             if (this.isOperator(value)){
                 
                 this.setLastOperation(value);
 
             } else if (isNaN(value)){
 
-                // outra acoisa
-                console.log(value);
+                console.log('outra acoisa', value);
 
             } else {
 
-                this._operation.push(value);
+                this.pushOperation(value);
 
             }
 
         } else {
-            let newValue = this.getLastOperation().toString() + value.toString();
-            this.setLastOperation(parseInt(newValue));
-        }
-        
-        console.log(this._operation);
 
+            if (this.isOperator(value)){
+
+                this.pushOperation(value)
+
+            } else {
+
+                let newValue = this.getLastOperation().toString() + value.toString();
+                this.setLastOperation(parseInt(newValue));
+
+                // atualizar display
+                this.setLastNumerToDisplay();
+            }
+        
+
+        }
     }
 
     setError(){
@@ -94,7 +126,6 @@ class CalcController{
     }
 
     execBtn(value){
-        console.log(value);
 
         switch (value) {
             
